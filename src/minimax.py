@@ -20,12 +20,11 @@ class MinimaxEngine:
         self.depth = depth
     
     def minimax(self, board: Board, player: bool, depth: int, evaluator: engine.SimpleEngine, alpha=-inf, beta=inf):
-        # Basis
         if depth == 0 or board.is_checkmate() or board.is_stalemate():
             if player:
-                return [evaluator.analyse(board, engine.Limit(depth=10))["score"].white().score(mate_score=MATE_SCORE), None]
+                return [evaluator.analyse(board, engine.Limit(depth=15))["score"].white().score(mate_score=MATE_SCORE), None]
             else:
-                return [evaluator.analyse(board, engine.Limit(depth=10))["score"].black().score(mate_score=MATE_SCORE), None]
+                return [evaluator.analyse(board, engine.Limit(depth=15))["score"].black().score(mate_score=MATE_SCORE), None]
         
         moves = list(board.legal_moves)
 
@@ -36,7 +35,7 @@ class MinimaxEngine:
                 test_board = board.copy()
                 test_board.push(move)
 
-                score = self.minimax(test_board, not player, depth-1, evaluator, alpha, beta)
+                score = self.minimax(test_board, player, depth-1, evaluator, alpha, beta)
                 
                 alpha = max(alpha, score[0])
                 if beta <= alpha:
@@ -54,7 +53,7 @@ class MinimaxEngine:
                 test_board = board.copy()
                 test_board.push(move)
 
-                score = self.minimax(test_board, not player, depth-1, alpha, beta)
+                score = self.minimax(test_board, player, depth-1, evaluator, alpha, beta)
                 
                 beta = min(beta, score[0])
                 if beta <= alpha:
@@ -74,7 +73,7 @@ if __name__ == "__main__":
     test_bot = MinimaxEngine(player=test_board.turn)
 
     start_time = time()
-    print(test_bot.minimax(test_board, test_board.turn, 3, evaluator))
+    print(test_bot.minimax(test_board, test_board.turn, 4, evaluator))
     end_time = time()
     print(end_time - start_time)
     evaluator.close()
