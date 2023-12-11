@@ -8,6 +8,7 @@
 
 ## General Information
 
+This code is an implementation of individual paper assignment on IF2120 Matematika Diskrit course. It uses minimax algorithm to determine the best move in chess. Open to any critics and suggestions
 
 ## Setup
 
