@@ -17,6 +17,8 @@
 
 - Python chess module
 
+- Any chess engine downloaded
+
 ### Installation
 
 - Install python [here](https://www.python.org/downloads/)
@@ -34,7 +36,9 @@
 
 2. Add your .pgn chess game file in the test directory. Make sure the moves in the file does not contain any illegal moves
 
-3. Run main.py file or open a terminal in src directory, then run following command in the terminal you have opened
+3. Edit the main.py file at line 40 with the chess engine available in your device
+
+4. Run main.py file or open a terminal in src directory, then run following command in the terminal you have opened
 ```shell
     python main.py
 ```
